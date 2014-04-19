@@ -1,0 +1,83 @@
+<head>
+  <title>famous</title>
+</head>
+
+<body>
+</body>
+
+<template name="layout">
+  {{>famous template='yieldFooter' modifier='inFront' size='undefined,50'}}
+  {{>famous template='yieldMain' size='undefined,undefined'}}
+</template>
+
+<template name="yieldMain">
+  <div>{{>yield}}</div>
+</template>
+
+<template name="yieldFooter">
+  <div>{{>yield region='footer'}}</div>
+</template>
+
+<template name="footer">
+  <div class="tabs tabs-icon-top">
+    <a class="tab-item" href="/">
+      <i class="icon ion-home"></i>
+      Home
+    </a>
+    <a class="tab-item" href="/leaderboard">
+      <i class="icon ion-star"></i>
+      Leaderboard
+    </a>
+    <a class="tab-item">
+      <i class="icon ion-gear-a"></i>
+      Settings
+    </a>
+  </div>
+</template>
+
+<template name="leader_footer">
+  <div class="tabs tabs-icon-top">
+    <a class="tab-item" href="/">
+      <i class="icon ion-home"></i>
+      Home
+    </a>
+    {{#if selected_name}}
+      <button class="button button-positive">
+        Give 5 points to 
+        <span style="color:yellow">{{selected_name}}</span>
+      </button>
+    {{else}}
+      <a class="tab-item"><h5>Select to vote</h5></a>
+    {{/if}}
+    <a class="tab-item">
+      <i class="icon ion-gear-a"></i>
+      Settings
+    </a>
+  </div>
+</template>
+
+<template name="home">
+  {{>famous template='_home' size='undefined,300'}}
+</template>
+
+<template name="_home">
+  <h1>Welcome to <br> Famous Meteor Leaderboard</h1>
+</template>
+
+<template name="leaderboard">
+  {{#famous view='Scrollview' size='undefined,undefined' players=players}}
+    {{#famousEach data=../players size='undefined,100'}}
+      {{>player}}
+    {{/famousEach}}
+  {{/famous}}
+</template>
+
+<template name="player">
+  <div class="item {{selected}} ">
+    <span class="name">{{name}} - <b>{{score}}</b></span>
+  </div>
+</template>
+
+<template name="_vote">
+  <h1>Select player to vote</h1>
+</template>

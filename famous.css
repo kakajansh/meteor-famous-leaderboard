@@ -1,0 +1,37 @@
+/* CSS declarations go here */
+
+.t__home {
+  background-color: #e7e7e7;
+  text-align: center;
+}
+
+.t__home h1 {
+  line-height: 120px;
+}
+
+.t__vote {
+  background-color: #c1c1c1;
+}
+
+.player .name {
+  font-size: 1.5em;
+  line-height: 2;
+  vertical-align: middle;
+}
+
+.player .score {
+  text-align: right !important;
+}
+
+.item.selected {
+  background-color: #73CFFF;
+}
+
+.footer, .details, .none {
+  background-color: white;
+  border-bottom: none;
+}
+
+.details, .none {
+  padding-left: 10px;
+}
