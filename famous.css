@@ -9,8 +9,9 @@
   line-height: 120px;
 }
 
-.t__vote {
-  background-color: #c1c1c1;
+.t_undefined {
+  background-color: red;
+  text-align: center;
 }
 
 .player .name {

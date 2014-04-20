@@ -1,4 +1,7 @@
 <head>
+  <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <title>famous</title>
 </head>
 
@@ -28,7 +31,7 @@
       <i class="icon ion-star"></i>
       Leaderboard
     </a>
-    <a class="tab-item">
+    <a class="tab-item" href='/loading'>
       <i class="icon ion-gear-a"></i>
       Settings
     </a>
@@ -49,7 +52,7 @@
     {{else}}
       <a class="tab-item"><h5>Select to vote</h5></a>
     {{/if}}
-    <a class="tab-item">
+    <a class="tab-item" href="/loading">
       <i class="icon ion-gear-a"></i>
       Settings
     </a>
@@ -78,6 +81,8 @@
   </div>
 </template>
 
-<template name="_vote">
-  <h1>Select player to vote</h1>
+<template name="loading">
+  {{#famous size='100,100'}}
+    <h1>loading data</h1>
+  {{/famous}}
 </template>

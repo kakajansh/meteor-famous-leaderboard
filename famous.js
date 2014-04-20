@@ -4,6 +4,7 @@ if (Meteor.isClient) {
   // Routing
   Router.configure({
     layoutTemplate: 'layout',
+    loadingTemplate: 'loading',
     yieldTemplates: {
       'footer': {to: 'footer'}
     }
@@ -11,11 +12,17 @@ if (Meteor.isClient) {
 
   Router.map(function() {
     this.route('home', { path: '/' });
+    this.route('loading', { path: '/loading' });
     this.route('leaderboard', { 
       path: '/leaderboard', 
+      waitOn: function () {
+        return Meteor.subscribe('players');
+      },
       yieldTemplates: { 'leader_footer': {to: 'footer'} }
     });
   });
+
+  Router.onBeforeAction('loading');
 
   // Famous
 
@@ -38,7 +45,7 @@ if (Meteor.isClient) {
     var famousComp = famousCmp.dataFromTpl(this);
     famousComp.modifier.setOrigin([.5,1]);
   };
-
+  
   // Leaderboard
 
   Template.leaderboard.players = function () {
@@ -73,6 +80,7 @@ if (Meteor.isClient) {
     Transform        = require('famous/core/Transform');
     Transitionable   = require("famous/transitions/Transitionable");
     SpringTransition = require("famous/transitions/SpringTransition");
+    // FastClick        = require("famous/inputs/FastClick");
 
     Transitionable.registerMethod('spring', SpringTransition);
   });
@@ -80,6 +88,10 @@ if (Meteor.isClient) {
 
 // On server startup, create some players if the database is empty.
 if (Meteor.isServer) {
+  Meteor.publish("players", function () {
+    return Players.find({});
+  });
+
   Meteor.startup(function () {
     if (Players.find().count() === 0) {
       var names = ["Ada Lovelace",
